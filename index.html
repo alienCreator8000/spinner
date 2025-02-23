@@ -1,10 +1,86 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>
-Character Randomizer
-</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chibi Hair Randomizer</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+        }
+        .wheel-container {
+            width: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: repeating-conic-gradient(white 0% 25%, black 25% 50%);
+        }
+        .character-container {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+        }
+        .wheel {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 5px solid white;
+            background: conic-gradient(
+                red 0deg 120deg, 
+                blue 120deg 240deg, 
+                green 240deg 360deg
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 3s ease-out;
+        }
+        .character {
+            position: relative;
+        }
+        .hair {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-This is the body
+    <div class="wheel-container">
+        <div id="wheel" class="wheel">SPIN</div>
+    </div>
+    <div class="character-container">
+        <img id="base" class="character" src="images/dollbase.png" width="250" height="500">
+        <img id="hair" class="hair" src="" width="250" height="500">
+        <button onclick="spinWheel()">Spin</button>
+    </div>
+
+    <script>
+        function spinWheel() {
+            const wheel = document.getElementById("wheel");
+            const hair = document.getElementById("hair");
+            const options = ["hair1.png", "hair2.png", "hair3.png"];
+            
+            let randomDegree = Math.floor(3600 + Math.random() * 360);
+            wheel.style.transform = `rotate(${randomDegree}deg)`;
+            
+            setTimeout(() => {
+                let selectedHair = options[Math.floor(Math.random() * options.length)];
+                hair.src = "images/" + selectedHair;
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
