@@ -19,6 +19,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
         .character-container {
             width: 40%;
@@ -51,7 +52,11 @@
             position: absolute;
             width: 80px;
             height: 80px;
+            transform-origin: center;
         }
+        .wheel img:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translateY(-120px) rotate(0deg); }
+        .wheel img:nth-child(2) { transform: translate(-50%, -50%) rotate(120deg) translateY(-120px) rotate(-120deg); }
+        .wheel img:nth-child(3) { transform: translate(-50%, -50%) rotate(240deg) translateY(-120px) rotate(-240deg); }
         .character {
             position: relative;
         }
@@ -82,9 +87,9 @@
 <body>
     <div class="wheel-container">
         <div id="wheel" class="wheel">
-            <img src="images/hair1.png" style="top: 10%; left: 50%; transform: translateX(-50%);">
-            <img src="images/hair2.png" style="top: 50%; left: 10%; transform: translateY(-50%);">
-            <img src="images/hair3.png" style="top: 50%; right: 10%; transform: translateY(-50%);">
+            <img src="images/hair1.png">
+            <img src="images/hair2.png">
+            <img src="images/hair3.png">
         </div>
         <button class="spin-button" onclick="spinWheel()">Spin</button>
     </div>
