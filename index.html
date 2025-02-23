@@ -54,9 +54,9 @@
             height: 80px;
             transform-origin: center;
         }
-        .wheel img:nth-child(1) { transform: rotate(60deg) translateY(-120px) rotate(-60deg); }
-        .wheel img:nth-child(2) { transform: rotate(180deg) translateY(-120px) rotate(-180deg); }
-        .wheel img:nth-child(3) { transform: rotate(300deg) translateY(-120px) rotate(-300deg); }
+        .wheel img:nth-child(1) { transform: rotate(60deg) translateY(-100px) rotate(-60deg); }
+        .wheel img:nth-child(2) { transform: rotate(180deg) translateY(-100px) rotate(-180deg); }
+        .wheel img:nth-child(3) { transform: rotate(300deg) translateY(-100px) rotate(-300deg); }
         .character {
             position: relative;
         }
@@ -65,6 +65,7 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
+            display: none;
         }
         .spin-button {
             margin-top: 20px;
@@ -103,15 +104,21 @@
             const hair = document.getElementById("hair");
             const options = ["hair1.png", "hair2.png", "hair3.png"];
             
-            hair.src = ""; // Reset previous hair selection
-            let randomDegree = 360 * 5 + Math.floor(Math.random() * 360);
-            wheel.style.transition = "transform 3s ease-out";
-            wheel.style.transform = `rotate(${randomDegree}deg)`;
+            hair.style.display = "none"; // Hide previous hair selection
+            wheel.style.transition = "none";
+            wheel.style.transform = "rotate(0deg)"; // Reset rotation instantly
             
             setTimeout(() => {
-                let selectedIndex = Math.floor(((randomDegree % 360) + 60) / 120) % 3;
-                hair.src = "images/" + options[selectedIndex];
-            }, 3000);
+                let randomDegree = 360 * 5 + Math.floor(Math.random() * 360);
+                wheel.style.transition = "transform 3s ease-out";
+                wheel.style.transform = `rotate(${randomDegree}deg)`;
+                
+                setTimeout(() => {
+                    let selectedIndex = Math.floor(((randomDegree % 360) + 60) / 120) % 3;
+                    hair.src = "images/" + options[selectedIndex];
+                    hair.style.display = "block"; // Show the selected hair
+                }, 3000);
+            }, 50);
         }
     </script>
 </body>
