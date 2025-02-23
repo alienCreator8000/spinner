@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Delicious Handrawn' rel='stylesheet'>
     <title>Chibi Hair Randomizer</title>
     <style>
         body {
@@ -38,9 +39,9 @@
             border-radius: 50%;
             border: 5px solid #8a2be2;
             background: conic-gradient(
-                #4b0082 0deg 120deg, 
-                #9400d3 120deg 240deg, 
-                #8a2be2 240deg 360deg
+                #595959 0deg 120deg, 
+                #a5a5a5 120deg 240deg, 
+                #f2f2f2 240deg 360deg
             );
             position: relative;
             display: flex;
@@ -54,9 +55,9 @@
             height: 80px;
             transform-origin: center;
         }
-        .wheel img:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translateY(-120px) rotate(0deg); }
-        .wheel img:nth-child(2) { transform: translate(-50%, -50%) rotate(120deg) translateY(-120px) rotate(-120deg); }
-        .wheel img:nth-child(3) { transform: translate(-50%, -50%) rotate(240deg) translateY(-120px) rotate(-240deg); }
+        .wheel img:nth-child(1) { transform: rotate(0deg) translateY(-110px) rotate(0deg); }
+        .wheel img:nth-child(2) { transform: rotate(120deg) translateY(-110px) rotate(-120deg); }
+        .wheel img:nth-child(3) { transform: rotate(240deg) translateY(-110px) rotate(-240deg); }
         .character {
             position: relative;
         }
@@ -105,11 +106,12 @@
             const options = ["hair1.png", "hair2.png", "hair3.png"];
             
             hair.src = ""; // Reset previous hair selection
-            let randomDegree = Math.floor(3600 + Math.random() * 360);
+            let randomDegree = 360 * 5 + Math.floor(Math.random() * 360);
+            wheel.style.transition = "transform 3s ease-out";
             wheel.style.transform = `rotate(${randomDegree}deg)`;
             
             setTimeout(() => {
-                let selectedHair = options[Math.floor(Math.random() * options.length)];
+                let selectedHair = options[Math.floor((randomDegree % 360) / 120)];
                 hair.src = "images/" + selectedHair;
             }, 3000);
         }
