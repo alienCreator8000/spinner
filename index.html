@@ -9,11 +9,14 @@
             display: flex;
             height: 100vh;
             margin: 0;
-            background-color: #000;
+            background-color: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
         }
         .wheel-container {
             width: 60%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
@@ -23,14 +26,21 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: white;
+            background-color: #2a2a2a;
             position: relative;
+            border-left: 3px solid white;
+            padding: 20px;
         }
         .wheel {
             width: 300px;
             height: 300px;
             border-radius: 50%;
-            border: 5px solid white;
+            border: 5px solid #8a2be2;
+            background: conic-gradient(
+                #4b0082 0deg 120deg, 
+                #9400d3 120deg 240deg, 
+                #8a2be2 240deg 360deg
+            );
             position: relative;
             display: flex;
             align-items: center;
@@ -39,8 +49,8 @@
         }
         .wheel img {
             position: absolute;
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
         }
         .character {
             position: relative;
@@ -51,11 +61,21 @@
             left: 50%;
             transform: translateX(-50%);
         }
-        button {
+        .spin-button {
             margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: Copperplate, Papyrus, fantasy;
+            background: #8a2be2;
+            border: none;
+            color: white;
             cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        .spin-button:hover {
+            background: #9400d3;
         }
     </style>
 </head>
@@ -66,11 +86,11 @@
             <img src="images/hair2.png" style="top: 50%; left: 10%; transform: translateY(-50%);">
             <img src="images/hair3.png" style="top: 50%; right: 10%; transform: translateY(-50%);">
         </div>
+        <button class="spin-button" onclick="spinWheel()">Spin</button>
     </div>
     <div class="character-container">
         <img id="base" class="character" src="images/dollbase.png" width="250" height="500">
         <img id="hair" class="hair" src="" width="250" height="500">
-        <button onclick="spinWheel()">Spin</button>
     </div>
 
     <script>
@@ -79,6 +99,7 @@
             const hair = document.getElementById("hair");
             const options = ["hair1.png", "hair2.png", "hair3.png"];
             
+            hair.src = ""; // Reset previous hair selection
             let randomDegree = Math.floor(3600 + Math.random() * 360);
             wheel.style.transform = `rotate(${randomDegree}deg)`;
             
