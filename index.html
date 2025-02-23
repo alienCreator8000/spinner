@@ -7,34 +7,35 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             height: 100vh;
             margin: 0;
             background-color: #1a1a1a;
             color: white;
             font-family: Arial, sans-serif;
         }
-        .wheel-container {
-            width: 60%;
+        .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            position: relative;
+            width: 100%;
         }
-        .character-container {
-            width: 40%;
+        .wheel-container, .character-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: #2a2a2a;
-            position: relative;
-            border-left: 3px solid white;
+            width: 100%;
+            max-width: 400px;
             padding: 20px;
         }
         .wheel {
-            width: 300px;
-            height: 300px;
+            width: 80vw;
+            max-width: 300px;
+            height: 80vw;
+            max-height: 300px;
             border-radius: 50%;
             border: 5px solid #8a2be2;
             background: conic-gradient(
@@ -50,15 +51,19 @@
         }
         .wheel img {
             position: absolute;
-            width: 80px;
-            height: 80px;
+            width: 20vw;
+            max-width: 60px;
+            height: 20vw;
+            max-height: 60px;
             transform-origin: center;
         }
-        .wheel img:nth-child(1) { transform: rotate(60deg) translateY(-100px) rotate(-60deg); }
-        .wheel img:nth-child(2) { transform: rotate(180deg) translateY(-100px) rotate(-180deg); }
-        .wheel img:nth-child(3) { transform: rotate(300deg) translateY(-100px) rotate(-300deg); }
+        .wheel img:nth-child(1) { transform: rotate(60deg) translateY(-80px) rotate(-60deg); }
+        .wheel img:nth-child(2) { transform: rotate(180deg) translateY(-80px) rotate(-180deg); }
+        .wheel img:nth-child(3) { transform: rotate(300deg) translateY(-80px) rotate(-300deg); }
         .character {
             position: relative;
+            width: 80vw;
+            max-width: 250px;
         }
         .hair {
             position: absolute;
@@ -66,6 +71,8 @@
             left: 50%;
             transform: translateX(-50%);
             display: none;
+            width: 80vw;
+            max-width: 250px;
         }
         .spin-button {
             margin-top: 20px;
@@ -82,20 +89,30 @@
         .spin-button:hover {
             background: #9400d3;
         }
+        @media (min-width: 600px) {
+            .container {
+                flex-direction: row;
+            }
+            .wheel-container, .character-container {
+                width: 50%;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="wheel-container">
-        <div id="wheel" class="wheel">
-            <img src="images/hair1.png">
-            <img src="images/hair2.png">
-            <img src="images/hair3.png">
+    <div class="container">
+        <div class="wheel-container">
+            <div id="wheel" class="wheel">
+                <img src="images/hair1.png">
+                <img src="images/hair2.png">
+                <img src="images/hair3.png">
+            </div>
+            <button class="spin-button" onclick="spinWheel()">Spin</button>
         </div>
-        <button class="spin-button" onclick="spinWheel()">Spin</button>
-    </div>
-    <div class="character-container">
-        <img id="base" class="character" src="images/dollbase.png" width="250" height="500">
-        <img id="hair" class="hair" src="" width="250" height="500">
+        <div class="character-container">
+            <img id="base" class="character" src="images/dollbase.png">
+            <img id="hair" class="hair" src="">
+        </div>
     </div>
 
     <script>
