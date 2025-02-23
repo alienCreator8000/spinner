@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://fonts.googleapis.com/css?family=Delicious Handrawn' rel='stylesheet'>
     <title>Chibi Hair Randomizer</title>
     <style>
         body {
@@ -39,9 +38,9 @@
             border-radius: 50%;
             border: 5px solid #8a2be2;
             background: conic-gradient(
-                #595959 0deg 120deg, 
-                #a5a5a5 120deg 240deg, 
-                #f2f2f2 240deg 360deg
+                #5h5h5h 0deg 120deg, 
+                #b3b3b3 120deg 240deg, 
+                #444444 240deg 360deg
             );
             position: relative;
             display: flex;
@@ -55,9 +54,9 @@
             height: 80px;
             transform-origin: center;
         }
-        .wheel img:nth-child(1) { transform: rotate(0deg) translateY(-110px) rotate(0deg); }
-        .wheel img:nth-child(2) { transform: rotate(120deg) translateY(-110px) rotate(-120deg); }
-        .wheel img:nth-child(3) { transform: rotate(240deg) translateY(-110px) rotate(-240deg); }
+        .wheel img:nth-child(1) { transform: rotate(60deg) translateY(-120px) rotate(-60deg); }
+        .wheel img:nth-child(2) { transform: rotate(180deg) translateY(-120px) rotate(-180deg); }
+        .wheel img:nth-child(3) { transform: rotate(300deg) translateY(-120px) rotate(-300deg); }
         .character {
             position: relative;
         }
@@ -72,7 +71,6 @@
             padding: 12px 25px;
             font-size: 18px;
             font-weight: bold;
-            font-family: 'Delicious Handrawn';font-size: 22px;
             background: #8a2be2;
             border: none;
             color: white;
@@ -111,8 +109,8 @@
             wheel.style.transform = `rotate(${randomDegree}deg)`;
             
             setTimeout(() => {
-                let selectedHair = options[Math.floor((randomDegree % 360) / 120)];
-                hair.src = "images/" + selectedHair;
+                let selectedIndex = Math.floor(((randomDegree % 360) + 60) / 120) % 3;
+                hair.src = "images/" + options[selectedIndex];
             }, 3000);
         }
     </script>
